@@ -40,6 +40,6 @@ public class Login : MonoBehaviour
             return;
         }
 
-        SceneManager.LoadScene("AdventureGame");
+        SceneManager.LoadScene("EndGame");
     }
 }
