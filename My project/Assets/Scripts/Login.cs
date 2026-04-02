@@ -6,9 +6,12 @@ using UnityEngine.SceneManagement;
 // Pelaajan pinkoodi ja lempinimi
 public class PlayerLogin
 {
-    public string pincode { get; set; }
-    public string nickname { get; set; }
+    [Column("pincode")]
+    public string PinCode { get; set; }
+    [Column("nick_name")]
+    public string NickName { get; set; }
 }
+
 
 // Kirjautuminen
 public class Login : MonoBehaviour
@@ -18,6 +21,7 @@ public class Login : MonoBehaviour
     [SerializeField] private TMP_InputField pincode;
 
     public bool IsLoginOK { get; private set; }
+    public static string nickname = "";
 
     public void HandleLogin()
     {
@@ -29,7 +33,7 @@ public class Login : MonoBehaviour
 
         if (players.Count != 0)
         {
-            print("Pelaaja löytyi");
+            nickname = players[0].NickName;
             IsLoginOK = true;
         }
 
@@ -40,6 +44,6 @@ public class Login : MonoBehaviour
             return;
         }
 
-        SceneManager.LoadScene("EndGame");
+        SceneManager.LoadScene("AdventureGame");
     }
 }
