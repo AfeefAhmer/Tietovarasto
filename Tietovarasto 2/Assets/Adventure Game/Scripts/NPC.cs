@@ -4,11 +4,21 @@ public class Npc : MonoBehaviour
 {
     private void Start()
     {
-        LogManager.Instance.LogEvent("NPC ilmestyi peliin: " + gameObject.name);
+        LogManager.Instance?.LogEvent("NPC ilmestyi peliin: " + gameObject.name);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        // Varmistetaan että vain pelaaja triggeröi
+        if (!other.CompareTag("Player")) return;
+
+        StartDialogue();
     }
 
     public void StartDialogue()
     {
-        LogManager.Instance.LogEvent("NPC aloitti keskustelun: " + gameObject.name);
+        Debug.Log("Keskustelu alkaa NPC:n kanssa: " + gameObject.name);
+
+        LogManager.Instance?.LogEvent("NPC aloitti keskustelun: " + gameObject.name);
     }
 }
